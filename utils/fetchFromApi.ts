@@ -1,0 +1,22 @@
+import axios from 'axios';
+import { Response } from '../interfaces/index';
+
+const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
+
+const options = {
+	url: BASE_URL,
+	params: {
+		maxResults: '50',
+		order: 'date',
+	},
+	headers: {
+		'X-RapidAPI-Key': '9ab5275652msha8b4f9934c2191ap1210fejsne9d796911f4f',
+		'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
+	},
+};
+
+export const fetchFromApi = async (url: string) => {
+	const { data } = await axios.get(`${BASE_URL}/${url}`, options);
+	const res: Response = data;
+	return res.items;
+};
