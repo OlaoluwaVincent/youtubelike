@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Navbar from './Navbar';
 
 // UI
-import { Box } from '@chakra-ui/react';
+import { Box, Grid } from '@chakra-ui/react';
 
 type Props = {
 	children?: ReactNode;
@@ -25,8 +25,10 @@ const Layout = ({ children, title = 'YouTube clone' }: Props) => (
 				href='https://fonts.googleapis.com/icon?family=Material+Icons'
 			/>
 		</Head>
-		<Navbar />
-		{children}
+		<Grid templateColumns={'repeat(12,1fr)'}>
+			<Navbar />
+		</Grid>
+		<Grid gridTemplateColumns={'repeat(12,1fr)'}>{children}</Grid>
 	</Box>
 );
 

@@ -1,5 +1,14 @@
 import React from 'react';
-import { Card, CardBody, CardFooter, Image, Text, Box } from '@chakra-ui/react';
+import {
+	Card,
+	CardBody,
+	CardFooter,
+	Image,
+	Text,
+	Box,
+	Flex,
+	Center,
+} from '@chakra-ui/react';
 import { ResponseItem } from '../interfaces/index';
 import {
 	demoThumbnailUrl,
@@ -23,67 +32,41 @@ const ChannelCard = ({
 	},
 }: Props) => {
 	return (
-		<Box
-			borderRadius='20px'
+		<Flex
+			direction={'column'}
+			align={'center'}
+			justify={'space-around'}
+			borderRadius={{ base: 0, md: 'md' }}
 			color={'white'}
-			bg={'#1e1e1e'}
-			display={'flex'}
-			justifyContent={'center'}
-			alignItems={'center'}
-			height={'326px'}
+			height={{ base: '256px', sm: '286px' }}
 			w={{ base: '90vw', sm: '320px' }}
 		>
 			<Link href={`/channel/${channelId}`}>
-				<Card
-					overflow={'hidden'}
-					bg='transparent'
-					display={'flex'}
-					justifyContent={'center'}
-					flexDirection={'column'}
-					textAlign={'center'}
-					shadow={0}
-				>
-					<CardBody p={0}>
-						<Image
-							src={demoProfilePicture}
-							alt={snippet.title}
-							objectFit={'cover'}
-							h={{ base: '150px', sm: '180px' }}
-							w={'180px'}
-							border='1px solid #e3e3e3'
-							sx={{
-								borderRadius: '50%',
-							}}
-						/>
-					</CardBody>
-					<CardFooter
-						p='10px'
-						justifyContent={'center'}
-						alignItems={'center'}
+				<Image
+					src={demoThumbnailUrl}
+					alt={snippet.title}
+					objectFit={'cover'}
+					h={{ base: '150px', sm: '180px' }}
+					w={'180px'}
+					border='1px solid #e3e3e3'
+					sx={{
+						borderRadius: '50%',
+					}}
+				/>
+				<Link href={channelId ? `/channel/${channelId}` : demoVideoUrl}>
+					<Center
+						color={'#fff'}
+						fontSize='sm'
+						opacity={0.8}
+						gap={1}
+						mt={2}
 					>
-						<Link
-							href={
-								channelId
-									? `/channel/${channelId}`
-									: demoVideoUrl
-							}
-						>
-							<Text
-								color={'#fff'}
-								fontSize='sm'
-								opacity={0.8}
-								display='flex'
-								alignItems='center'
-								gap={1}
-							>
-								{snippet.channelTitle || demoChannelTitle}
-								<MdCheckCircle />
-							</Text>
-						</Link>
-					</CardFooter>
-				</Card>
+						{snippet.channelTitle || demoChannelTitle}
+						<MdCheckCircle />
+					</Center>
+				</Link>
 			</Link>
-		</Box>
+		</Flex>
 	);
 };
 

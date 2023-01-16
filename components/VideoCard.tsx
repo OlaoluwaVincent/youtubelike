@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ResponseItem } from '../interfaces';
-import { Card, CardBody, CardFooter, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import {
 	demoVideoTitle,
@@ -19,38 +19,25 @@ const VideoCard = ({
 	},
 }: Props) => {
 	return (
-		<Card
-			borderRadius={{ base: 'sm', md: 'lg' }}
-			w={{ base: '90vw', sm: '320px' }}
-			overflow='hidden'
-			bg={'transparent'}
-		>
+		<Flex direction={'column'} borderRadius={{ base: 0, md: 'md' }}>
 			<Link href={videoId ? `/video/${videoId}` : demoVideoUrl}>
-				<CardBody p={0}>
+				<Box>
 					<Image
 						src={snippet.thumbnails.high.url}
 						alt={snippet.title}
 						objectFit={'cover'}
 						h={{ base: '150px', sm: '180px' }}
-						sx={{ width: { base: '90vw', sm: '320px' } }}
+						w={'100%'}
 					/>
-				</CardBody>
-				<CardFooter
-					bg='#1e1e1e'
-					h='106px'
-					flexDirection={'column'}
-					p='10px'
-					sx={{ width: { base: '90vw', sm: '320px' } }}
-				>
-					<Link href={videoId ? `/video/${videoId}` : demoVideoUrl}>
-						<Text
-							color={'#fff'}
-							fontSize={{ base: 'sm', md: 'md', lg: '1xl' }}
-						>
-							{snippet.title.slice(0, 60) ||
-								demoVideoTitle.slice(0, 60)}
-						</Text>
-					</Link>
+				</Box>
+				<Box bg='#1e1e1e' h='106px' p='10px' w='100%'>
+					<Text
+						color={'#fff'}
+						fontSize={{ base: 'sm', md: 'md', lg: '1xl' }}
+					>
+						{snippet.title.slice(0, 60) ||
+							demoVideoTitle.slice(0, 60)}
+					</Text>
 					<Link href={videoId ? `/channel/${videoId}` : demoVideoUrl}>
 						<Text
 							color={'#fff'}
@@ -64,9 +51,9 @@ const VideoCard = ({
 							<MdCheckCircle />
 						</Text>
 					</Link>
-				</CardFooter>
+				</Box>
 			</Link>
-		</Card>
+		</Flex>
 	);
 };
 

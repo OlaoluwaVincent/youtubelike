@@ -3,17 +3,18 @@ import Link from 'next/link';
 import SearchBar from './SearchBar';
 
 //
-import { Stack, Image } from '@chakra-ui/react';
+import { Stack, Image, GridItem, Flex } from '@chakra-ui/react';
 
 type Props = {};
 
 const Navbar = (props: Props) => {
 	return (
-		<Stack
-			direction={'row'}
+		<GridItem
+			colSpan={12}
 			alignItems={'center'}
 			bg='#000'
-			p={{ base: 3, md: 10 }}
+			justifyContent={'space-between'}
+			p={{ base: 3, md: 5 }}
 			sx={{
 				position: 'sticky',
 				top: '0',
@@ -21,18 +22,23 @@ const Navbar = (props: Props) => {
 				zIndex: 1000,
 			}}
 		>
-			<Link href={'/'} style={{ display: 'flex', alignItems: 'center' }}>
-				<Image
-					src='https://i.ibb.co/s9Qys2j/logo.png'
-					alt='logo'
-					h={{ base: '32px', md: '56px' }}
-					w={{ base: '32px', md: '56px' }}
-					transition={'ease-in 200ms'}
-				/>
-			</Link>
+			<Flex justify={'space-between'}>
+				<Link
+					href={'/'}
+					style={{ display: 'flex', alignItems: 'center' }}
+				>
+					<Image
+						src='https://i.ibb.co/s9Qys2j/logo.png'
+						alt='logo'
+						h={{ base: '32px', md: '56px' }}
+						w={{ base: '32px', md: '56px' }}
+						transition={'ease-in 200ms'}
+					/>
+				</Link>
 
-			<SearchBar />
-		</Stack>
+				<SearchBar />
+			</Flex>
+		</GridItem>
 	);
 };
 

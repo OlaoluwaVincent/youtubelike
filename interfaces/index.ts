@@ -33,8 +33,53 @@ export interface Response {
 	items: ResponseItem[];
 }
 
+export interface VideoDetails {
+	contentDetails: ContentDetails;
+	id: string;
+	kind: string;
+	snippet: Snippet;
+	statistics: Statistics;
+}
+
 interface Thumbnails {
 	height: number;
 	url: string;
 	width: number;
+}
+
+interface Statistics {
+	commentCount: string;
+	favoriteCount: string;
+	likeCount: string;
+	viewCount: string;
+}
+
+interface ContentDetails {
+	caption: boolean;
+	contentRating: {};
+	definition: string;
+	dimension: string;
+	duration: string;
+	licensedContent: boolean;
+	projection: string;
+}
+
+interface Snippet {
+	categoryId: string;
+	channelId: string;
+	channelTitle: string;
+	title: string;
+	defaultAudioLanguage: string;
+	description: string;
+	liveBroadcastContent: string;
+	localized: {
+		description: string;
+		title: string;
+	};
+	publishedAt: string;
+	thumbnails: {
+		default: Thumbnails;
+		high: Thumbnails;
+		medium: Thumbnails;
+	};
 }

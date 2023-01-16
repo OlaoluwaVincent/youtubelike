@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, IconButton } from '@chakra-ui/react';
+import { Box, Flex, IconButton } from '@chakra-ui/react';
 import { MdSearch } from 'react-icons/md';
 
 type Props = {};
@@ -12,11 +12,14 @@ const SearchBar = (props: Props) => {
 	};
 
 	return (
-		<Box
+		<Flex
 			as='form'
 			onSubmit={handleSubmit}
 			color={'#000'}
-			overflow={'hidden'}
+			align={'center'}
+			justify={'space-between'}
+			w={{ base: '70%', md: '50%' }}
+			h='max-content'
 			sx={{
 				borderRadius: '20px',
 				border: '1px solid #e3e3e3',
@@ -30,6 +33,7 @@ const SearchBar = (props: Props) => {
 				value={value}
 				onChange={handleChange}
 			/>
+
 			<IconButton
 				variant={'solid'}
 				type='submit'
@@ -37,7 +41,7 @@ const SearchBar = (props: Props) => {
 				icon={<MdSearch />}
 				borderRadius={'50%'}
 			/>
-		</Box>
+		</Flex>
 	);
 };
 
