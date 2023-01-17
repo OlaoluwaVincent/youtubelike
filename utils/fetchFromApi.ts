@@ -31,8 +31,7 @@ export const fetchDetailFromApi = async (
 		url: BASE_URL,
 		params: { part: 'contentDetails,snippet,statistics' },
 		headers: {
-			'X-RapidAPI-Key':
-				'9ab5275652msha8b4f9934c2191ap1210fejsne9d796911f4f',
+			'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
 			'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
 		},
 	};
