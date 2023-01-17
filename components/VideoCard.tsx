@@ -38,7 +38,13 @@ const VideoCard = ({
 						{snippet.title.slice(0, 60) ||
 							demoVideoTitle.slice(0, 60)}
 					</Text>
-					<Link href={videoId ? `/channel/${videoId}` : demoVideoUrl}>
+					<Link
+						href={
+							videoId
+								? `/channel/${snippet.channelId}`
+								: demoVideoUrl
+						}
+					>
 						<Text
 							color={'#fff'}
 							fontSize='sm'

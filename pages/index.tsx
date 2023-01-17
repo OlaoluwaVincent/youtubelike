@@ -1,70 +1,34 @@
-import { useEffect, useState } from 'react';
-import {
-	Box,
-	Flex,
-	Center,
-	Stack,
-	Text,
-	Square,
-	HStack,
-	VStack,
-	Button,
-	GridItem,
-} from '@chakra-ui/react';
-import { fetchFromApi } from '../utils/fetchFromApi';
+import { useContext } from 'react';
+import { Box, Text } from '@chakra-ui/react';
 import Layout from '../components/Layout';
-import { SideBar, Videos } from '../components';
+import { Videos } from '../components';
 import { ResponseItem } from '../interfaces/index';
+import { menuSelection } from '../context/layoutContext';
+
+interface Context {
+	selectedCategory: string;
+	videos: ResponseItem[];
+}
 
 const IndexPage = () => {
-	const [selectedCategory, setSelectedCategory] = useState<string>('New');
-	const [videos, setVideos] = useState<ResponseItem[]>([]);
-	useEffect(() => {
-		fetchFromApi(`search?part=snippet&q=${selectedCategory}`).then(
-			(data) => {
-				setVideos(data);
-			}
-		);
-	}, [selectedCategory]);
+	const { selectedCategory, videos } = useContext(menuSelection) as Context;
 
 	return (
-		<Layout title='Home | Next.js + TypeScript Example'>
-			<GridItem colSpan={{ base: 12, md: 3 }}>
-				<Box
-					height={{ base: 'auto', md: '92vh' }}
-					borderRight={'1px solid #3d3d3d'}
-					px={{ base: '0', md: '2' }}
+		<Layout title='Homepage'>
+			<Box p={2} height={'90vh'} overflowY={'auto'}>
+				<Text
+					mb={2}
+					fontWeight={'bold'}
+					fontSize={{ base: '14px', md: '20px' }}
+					align={{ base: 'center', md: 'left' }}
 				>
-					<SideBar
-						selectedCategory={selectedCategory}
-						setSelectedCategory={setSelectedCategory}
-					/>
-					<p className='copyright'>copyright 2023 OlaoluwaDev</p>
-				</Box>
-				{/* sidebar end */}
-			</GridItem>
-			<GridItem colSpan={{ base: 12, md: 9 }}>
-				<Box p={2} height={'90vh'} overflowY={'auto'}>
-					<Text
-						mb={2}
-						fontWeight={'bold'}
-						fontSize={{ base: '14px', md: '20px' }}
-						align={{ base: 'center', md: 'left' }}
-					>
-						{selectedCategory}{' '}
-						<span style={{ color: '#f31503' }}>videos</span>
-					</Text>
-					{videos && <Videos data={videos} />}
-				</Box>
-			</GridItem>
+					{selectedCategory}{' '}
+					<span style={{ color: '#f31503' }}>videos</span>
+				</Text>
+				{videos && <Videos data={videos} />}
+			</Box>
 		</Layout>
 	);
 };
 
 export default IndexPage;
-// <Stack
-// 	direction={{ base: 'column', md: 'row' }}
-// 	transition={'ease-in 200ms'}
-// >
-
-// </Stack>

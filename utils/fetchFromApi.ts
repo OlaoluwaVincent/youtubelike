@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Response, VideoDetails } from '../interfaces/index';
+import { ChannelDetails, Response, VideoDetails } from '../interfaces/index';
 
 const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
 
@@ -40,7 +40,7 @@ export const fetchDetailFromApi = async (
 		`${BASE_URL}/${contentType}?part=${url}`,
 		options
 	);
-	const res: VideoDetails = data.items[0];
+	const res = data.items[0];
 	return res;
 };
 

@@ -1,50 +1,39 @@
 import React from 'react';
-import {
-	Card,
-	CardBody,
-	CardFooter,
-	Image,
-	Text,
-	Box,
-	Flex,
-	Center,
-} from '@chakra-ui/react';
-import { ResponseItem } from '../interfaces/index';
-import {
-	demoThumbnailUrl,
-	demoVideoTitle,
-	demoVideoUrl,
-	demoChannelTitle,
-	demoChannelUrl,
-	demoProfilePicture,
-} from '../utils/constants';
+import { Image, Flex, Center } from '@chakra-ui/react';
+import { ChannelDetails, ResponseItem } from '../interfaces/index';
+import { demoThumbnailUrl } from '../utils/constants';
 import Link from 'next/link';
 import { MdCheckCircle } from 'react-icons/md';
 
 type Props = {
-	channel: ResponseItem;
+	channel?: ResponseItem;
+	marginTop?: string;
+	statistics?: string;
+	data?: ChannelDetails;
 };
 
-const ChannelCard = ({
-	channel: {
-		id: { channelId },
-		snippet,
-	},
-}: Props) => {
+const ChannelCard = ({ channel, marginTop }: Props) => {
 	return (
 		<Flex
 			direction={'column'}
 			align={'center'}
-			justify={'space-around'}
+			justify={'center'}
 			borderRadius={{ base: 0, md: 'md' }}
 			color={'white'}
 			height={{ base: '256px', sm: '286px' }}
 			w={{ base: '90vw', sm: '320px' }}
+			marginTop={marginTop}
 		>
-			<Link href={`/channel/${channelId}`}>
+			<Link
+				href={
+					channel?.id?.channelId
+						? `/channel/${channel.id.channelId}`
+						: `/channel/${channel?.id}`
+				}
+			>
 				<Image
 					src={demoThumbnailUrl}
-					alt={snippet.title}
+					alt={channel?.snippet?.title}
 					objectFit={'cover'}
 					h={{ base: '150px', sm: '180px' }}
 					w={'180px'}
@@ -53,7 +42,13 @@ const ChannelCard = ({
 						borderRadius: '50%',
 					}}
 				/>
-				<Link href={channelId ? `/channel/${channelId}` : demoVideoUrl}>
+				<Link
+					href={
+						channel?.id?.channelId
+							? `/channel/${channel.id.channelId}`
+							: `/channel/${channel?.id}`
+					}
+				>
 					<Center
 						color={'#fff'}
 						fontSize='sm'
@@ -61,8 +56,21 @@ const ChannelCard = ({
 						gap={1}
 						mt={2}
 					>
-						{snippet.channelTitle || demoChannelTitle}
+						{channel?.snippet.channelTitle ||
+							channel?.snippet.title}
 						<MdCheckCircle />
+					</Center>
+					<Center
+						color={'#fff'}
+						fontSize='sm'
+						opacity={0.8}
+						gap={1}
+						mt={2}
+					>
+						{channel?.statistics?.subscriberCount &&
+							parseInt(
+								channel.statistics.subscriberCount
+							).toLocaleString()}
 					</Center>
 				</Link>
 			</Link>

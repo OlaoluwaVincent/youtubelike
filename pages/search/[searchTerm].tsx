@@ -1,16 +1,38 @@
-import { Text } from '@chakra-ui/react';
-import React from 'react';
-import { Layout } from '../../components';
+import { useEffect, useState } from 'react';
+import { Box, Text } from '@chakra-ui/react';
+import { fetchFromApi } from '../../utils/fetchFromApi';
+import Layout from '../../components/Layout';
+import { Videos } from '../../components';
+import { ResponseItem } from '../../interfaces/index';
+import { useRouter } from 'next/router';
 
-type Props = {};
-
-const SearchFeed = (props: Props) => (
-	<Layout title='Home | Next.js + TypeScript Example'>
-		<Text as={'p'}>
-			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste,
-			SearchFeed!
-		</Text>
-	</Layout>
-);
+const SearchFeed = () => {
+	const router = useRouter();
+	const { searchTerm } = router.query;
+	const [videos, setVideos] = useState<ResponseItem[]>([]);
+	useEffect(() => {
+		fetchFromApi(`search?part=snippet&q=${searchTerm}`).then((data) => {
+			setVideos(data);
+		});
+	}, [searchTerm]);
+	return (
+		<Layout title={`results for ${searchTerm}`}>
+			<Box>
+				<Box p={2} height={'90vh'} overflowY={'auto'}>
+					<Text
+						marginBottom={2}
+						fontWeight={'bold'}
+						fontSize={{ base: '14px', md: '20px' }}
+						alignItems={{ base: 'center', md: 'left' }}
+					>
+						Search Reuslts for: {searchTerm}{' '}
+						<span style={{ color: '#f31503' }}>videos</span>
+					</Text>
+					{videos && <Videos data={videos} />}
+				</Box>
+			</Box>
+		</Layout>
+	);
+};
 
 export default SearchFeed;

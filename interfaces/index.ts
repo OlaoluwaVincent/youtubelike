@@ -7,25 +7,15 @@ export interface Categories {
 
 export interface ResponseItem {
 	kind: string;
-	id: {
-		kind: string;
-		videoId: string;
-		channelId: string;
-	};
-	snippet: {
-		channelId: string;
-		channelTitle: string;
-		description: string;
-		liveBroadcastContent: string;
-		publishTime: string;
-		publishedAt: string;
-		title: string;
-		thumbnails: {
-			default: Thumbnails;
-			high: Thumbnails;
-			medium: Thumbnails;
-		};
-	};
+	/**
+	 {*kind: string;
+	 *videoId: string;
+	 *channelId: string;}
+		string;
+	 */
+	id: any;
+	snippet: Snippet;
+	statistics?: Statistics;
 }
 
 export interface Response {
@@ -34,11 +24,34 @@ export interface Response {
 }
 
 export interface VideoDetails {
-	contentDetails: ContentDetails;
+	contentDetails: VideoContentDetails;
 	id: string;
 	kind: string;
 	snippet: Snippet;
 	statistics: Statistics;
+}
+
+export interface ChannelDetails {
+	brandingSettings: BrandSettings;
+	contentDetails: VideoContentDetails;
+	id: string;
+	kind: string;
+	snippet: Snippet;
+	statistics: Statistics;
+}
+
+interface BrandSettings {
+	channel: {
+		country: string;
+		description: string;
+		keywords: string;
+		title: string;
+		trackingAnalyticsAccountId: string;
+		unsubscribedTrailer: string;
+	};
+	image: {
+		bannerExternalUrl: string;
+	};
 }
 
 interface Thumbnails {
@@ -48,36 +61,46 @@ interface Thumbnails {
 }
 
 interface Statistics {
-	commentCount: string;
-	favoriteCount: string;
-	likeCount: string;
-	viewCount: string;
+	commentCount?: string;
+	favoriteCount?: string;
+	likeCount?: string;
+	hiddenSubscriberCount?: false;
+	subscriberCount?: string;
+	videoCount?: string;
+	viewCount?: string;
 }
 
-interface ContentDetails {
-	caption: boolean;
-	contentRating: {};
-	definition: string;
-	dimension: string;
-	duration: string;
-	licensedContent: boolean;
-	projection: string;
+interface VideoContentDetails {
+	relatedPlaylists:
+		| { likes: string; uploads: string }
+		| {
+				caption: boolean;
+				contentRating: {};
+				definition: string;
+				dimension: string;
+				duration: string;
+				licensedContent: boolean;
+				projection: string;
+		  };
 }
 
 interface Snippet {
-	categoryId: string;
-	channelId: string;
-	channelTitle: string;
-	title: string;
-	defaultAudioLanguage: string;
-	description: string;
-	liveBroadcastContent: string;
-	localized: {
+	country?: string;
+	customUrl?: string;
+	categoryId?: string;
+	defaultAudioLanguage?: string;
+	localized?: {
 		description: string;
 		title: string;
 	};
-	publishedAt: string;
-	thumbnails: {
+	channelId?: string;
+	channelTitle?: string;
+	description?: string;
+	liveBroadcastContent?: string;
+	publishTime?: string;
+	publishedAt?: string;
+	title: string;
+	thumbnails?: {
 		default: Thumbnails;
 		high: Thumbnails;
 		medium: Thumbnails;
