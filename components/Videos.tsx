@@ -1,5 +1,5 @@
 import { ResponseItem } from '../interfaces';
-import { Stack, Box, Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import { VideoCard, ChannelCard } from './index';
 type Props = {
 	data: ResponseItem[];
@@ -7,7 +7,12 @@ type Props = {
 };
 
 const Videos = ({ data, direction }: Props) => {
-	if (!data) return <Box minH={'90vh'}>Loading...</Box>;
+	if (!data)
+		return (
+			<Box minH={'90vh'} bg={'#000'}>
+				Loading...
+			</Box>
+		);
 	return (
 		<Flex
 			flexWrap={'wrap'}

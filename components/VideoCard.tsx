@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ResponseItem } from '../interfaces';
-import { Box, Flex, HStack, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import {
 	demoVideoTitle,

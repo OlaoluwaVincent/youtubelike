@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Layout } from '../../components';
-import { Text, Box, Stack, VStack, Center, HStack } from '@chakra-ui/react';
+import { Text, Box, Stack, Center, HStack } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import { useRouter } from 'next/router';
 import { fetchDetailFromApi, fetchFromApi } from '../../utils/fetchFromApi';
@@ -36,6 +36,7 @@ const VideoDetail = (props: Props) => {
 			mounted = false;
 		};
 	}, [videoId]);
+
 	if (!videoDetail)
 		return (
 			<Box minH={'90vh'} bg={'#000'}>

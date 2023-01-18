@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ChannelDetails, Response, VideoDetails } from '../interfaces/index';
+import { Response } from '../interfaces/index';
 
 const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
 
@@ -43,6 +43,3 @@ export const fetchDetailFromApi = async (
 	const res = data.items[0];
 	return res;
 };
-
-// channels
-// snippet%2Cstatistics&id=UCBVjMGOIkavEAhyqpxJ73Dw

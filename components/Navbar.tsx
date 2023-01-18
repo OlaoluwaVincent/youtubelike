@@ -4,7 +4,7 @@ import Link from 'next/link';
 import SearchBar from './SearchBar';
 
 //
-import { Stack, Image, GridItem, Flex } from '@chakra-ui/react';
+import { Image, GridItem, Flex } from '@chakra-ui/react';
 
 type Props = {};
 
