@@ -17,19 +17,17 @@ const SearchFeed = () => {
 	}, [searchTerm]);
 	return (
 		<Layout title={`results for ${searchTerm}`}>
-			<Box>
-				<Box p={2} height={'90vh'} overflowY={'auto'}>
-					<Text
-						marginBottom={2}
-						fontWeight={'bold'}
-						fontSize={{ base: '14px', md: '20px' }}
-						alignItems={{ base: 'center', md: 'left' }}
-					>
-						Search Reuslts for: {searchTerm}{' '}
-						<span style={{ color: '#f31503' }}>videos</span>
-					</Text>
-					{videos && <Videos data={videos} />}
-				</Box>
+			<Box p={2} height={'90vh'} overflowY={'auto'}>
+				<Text
+					marginBottom={2}
+					fontWeight={'bold'}
+					fontSize={{ base: '14px', md: '20px' }}
+					alignItems={{ base: 'center', md: 'left' }}
+				>
+					Search Reuslts for: {searchTerm}{' '}
+					<span style={{ color: '#f31503' }}>videos</span>
+				</Text>
+				{videos && <Videos data={videos} />}
 			</Box>
 		</Layout>
 	);

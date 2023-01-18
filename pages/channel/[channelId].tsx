@@ -32,7 +32,7 @@ const ChannelDetail = (props: Props) => {
 
 	return (
 		<Layout title={data?.snippet?.title} hideSideBar={true}>
-			<Box height={'90vh'} overflowY={'auto'}>
+			<Box p={2} height={'90vh'} overflowY={'auto'}>
 				<Box
 					display={'flex'}
 					flexDirection={'column'}

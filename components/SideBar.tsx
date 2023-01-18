@@ -12,7 +12,7 @@ const SideBar = ({ selectedCategory, setSelectedCategory }: Props) => {
 		<Stack
 			overflowX='auto'
 			gap={2}
-			height={{ base: 'auto', md: '95%' }}
+			height={{ base: 'auto', md: '88%' }}
 			flexDirection={{ base: 'row', md: 'column' }}
 		>
 			{categories.map((category) => (

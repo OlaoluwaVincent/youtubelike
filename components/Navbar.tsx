@@ -15,7 +15,8 @@ const Navbar = (props: Props) => {
 			alignItems={'center'}
 			bg='#000'
 			justifyContent={'space-between'}
-			p={{ base: 3, md: 5 }}
+			p={{ base: 2, md: 4 }}
+			borderBottom={'1px solid red'}
 			sx={{
 				position: 'sticky',
 				top: '0',
